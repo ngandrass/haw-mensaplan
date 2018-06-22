@@ -27,9 +27,36 @@
                 height: 100%;
                 border: 0px;
             }
+
+            div.menu {
+                z-index: 100;
+                position: absolute;
+                top: 0;
+                right: 0;
+                text-align: center;
+
+                background-color: #FFFFFF;
+                border: 1px solid #CCCCCC;
+                border-top: 0px;
+                padding: 5px 10px 5px 10px;
+            }
+
+            div.menu a {
+                color: #000000;
+                text-decoration: none;
+            }
+
+            div.menu a:hover {
+                text-decoration: underline;
+            }
         </style>
     </head>
     <body>
+        <div class="menu">
+            <a href="#" id="btnThisWeek" onClick="showThisWeek()">This Week</a>
+            &nbsp; | &nbsp;
+            <a href="#" id="btnNextWeek" onClick="showNextWeek()">Next Week</a>
+        </div>
         <table>
             <tr>
                 <td>
@@ -66,9 +93,49 @@
         return 1 + Math.round(((date.getTime() - firstWeek.getTime()) / 86400000 - 3 + (firstWeek.getDay() + 6) % 7) / 7);
     }
 
-    // Include canteene plans for current week
-    let now = new Date();
-    document.getElementById("leftFrame").src="http://speiseplan.studierendenwerk-hamburg.de/de/530/" + now.getFullYear() + "/" + now.getWeekNumber() + "/";
-    document.getElementById("rightFrame").src="http://speiseplan.studierendenwerk-hamburg.de/de/531/" + now.getFullYear() + "/" + now.getWeekNumber() + "/";
+    /**
+     * Adds a week to the Date.
+     *
+     * @param weeks The number of weeks to add to the current time.
+     *
+     * @return Date
+     */
+    Date.prototype.addWeeks = function(weeks) {
+       this.setTime(this.getTime() + (weeks * 7 * 24 * 60 * 60 * 1000));
+       return this;
+    }
+
+    /**
+     * Updates the iFrame display to the given week_offset
+     *
+     * @param week_offset Number of weeks in the future to show the plan for.
+     */
+    function showWeek(week_offset) {
+        let now = new Date();
+        now.addWeeks(week_offset);
+        document.getElementById("leftFrame").src="http://speiseplan.studierendenwerk-hamburg.de/de/530/" + now.getFullYear() + "/" + now.getWeekNumber() + "/";
+        document.getElementById("rightFrame").src="http://speiseplan.studierendenwerk-hamburg.de/de/531/" + now.getFullYear() + "/" + now.getWeekNumber() + "/";
+    }
+
+    /**
+     * Displays the current weeks plan
+     */
+    function showThisWeek() {
+        document.getElementById("btnThisWeek").style.fontWeight = "bold";
+        document.getElementById("btnNextWeek").style.fontWeight = "normal";
+        showWeek(0);
+    }
+
+    /**
+     * Displays the next weeks plan
+     */
+    function showNextWeek() {
+        document.getElementById("btnThisWeek").style.fontWeight = "normal";
+        document.getElementById("btnNextWeek").style.fontWeight = "bold";
+        showWeek(1);
+    }
+
+    // Start initally with current week
+    showThisWeek();
     </script>
 </html>
