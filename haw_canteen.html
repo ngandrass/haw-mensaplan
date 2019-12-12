@@ -12,19 +12,19 @@
                 overflow: hidden;
             }
 
-	    .plans {
-		display: flex;
-		width: 100%;
-		height: 100vh;
-	    }
+            .plans {
+                display: flex;
+                width: 100%;
+                height: 100vh;
+            }
 
-	    .plans.horizontal {
-		flex-direction: row;
-	    }
+            .plans.horizontal {
+                flex-direction: row;
+            }
 
-	    .plans.vertical {
-		flex-direction: column;
-	    }
+            .plans.vertical {
+                flex-direction: column;
+            }
 
             iframe {
                 width: 100%;
@@ -43,15 +43,15 @@
                 padding: 5px 10px 5px 10px;
             }
 
-	    .menu.top-left {
-		top: 0px;
-		left: 0px;
-	    }
+            .menu.top-left {
+                top: 0px;
+                left: 0px;
+            }
 
-	    .menu.top-right {
-		top: 0px;
-		right: 0px;
-	    }
+            .menu.top-right {
+                top: 0px;
+                right: 0px;
+            }
 
             div.menu a {
                 color: #000000;
@@ -74,14 +74,14 @@
             &nbsp; | &nbsp;
             <a href="#" id="btnVertical" onClick="makeLayoutVertical()">Vertical</a>
         </div>
-	<div id="plans" class="plans horizontal">
-	    <iframe id="leftFrame" src="" style="border-right: 1px solid #999999;" sandbox>
-		IFrames not supported!
-	    </iframe>
-	    <iframe id="rightFrame" src="" sandbox>
-		IFrames not supported!
-	    </iframe>
-	</div>
+    <div id="plans" class="plans horizontal">
+        <iframe id="leftFrame" src="" style="border-right: 1px solid #999999;" sandbox>
+            IFrames not supported!
+        </iframe>
+        <iframe id="rightFrame" src="" sandbox>
+            IFrames not supported!
+        </iframe>
+    </div>
     </body>
     <script>
 
@@ -152,7 +152,7 @@
     function makeLayoutHorizontal() {
         document.getElementById("btnHorizontal").style.fontWeight = "bold";
         document.getElementById("btnVertical").style.fontWeight = "normal";
-	document.getElementById("plans").className="plans horizontal";
+        document.getElementById("plans").className="plans horizontal";
     }
 
     /**
@@ -161,7 +161,7 @@
     function makeLayoutVertical() {
         document.getElementById("btnHorizontal").style.fontWeight = "normal";
         document.getElementById("btnVertical").style.fontWeight = "bold";
-	document.getElementById("plans").className="plans vertical";
+        document.getElementById("plans").className="plans vertical";
     }
 
     // Start initally with current week
